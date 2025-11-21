@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">gestion-cuentas-bancarias</a> &gt; <a href="index.source.html" class="el_package">service</a> &gt; <span class="el_source">UsuarioService.java</span></div><h1>UsuarioService.java</h1><pre class="source lang-java linenums">package service;
+
+import Model.Usuario;
+import exceptions.TelefonoInvalido;
+
+import java.util.HashMap;
+import java.util.Map;
+
+<span class="fc" id="L9">public class UsuarioService {</span>
+
+<span class="fc" id="L11">    private Map&lt;String, Usuario&gt; usuarios = new HashMap&lt;&gt;();</span>
+
+    public void registrarUsuario(Usuario usuario){
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        if (usuarios.containsKey(usuario.getId())){</span>
+<span class="fc" id="L15">            throw new IllegalArgumentException(&quot;EL USUARIO CON ID &quot;+ usuario.getId() + &quot; YA EXISTE&quot;);</span>
+        }
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if(!usuario.getTelefono().matches(&quot;\\d{10}&quot;)){</span>
+<span class="fc" id="L18">            throw new TelefonoInvalido(&quot;EL TELEFONO DEBE TENER AL MENOS 10 DIGITOS&quot;);</span>
+        }
+<span class="fc" id="L20">        usuarios.put(usuario.getId(), usuario);</span>
+<span class="fc" id="L21">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

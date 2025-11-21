@@ -31,6 +31,9 @@ jobs:
       - name: Generar reporte de cobertura
         run: mvn -B jacoco:report
 
+      - name: Install xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
       - name: Validar cobertura mínima (80%)
         run: |
           echo "Validando cobertura mínima..."

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Banco.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">gestion-cuentas-bancarias</a> &gt; <a href="index.source.html" class="el_package">service</a> &gt; <span class="el_source">Banco.java</span></div><h1>Banco.java</h1><pre class="source lang-java linenums">package service;
+
+import Model.Cuenta;
+import exceptions.CuentaNoEncontrada;
+import exceptions.SaldoInsuficiente;
+
+import java.util.HashMap;
+import java.util.Map;
+
+<span class="fc" id="L10">public class Banco {</span>
+<span class="fc" id="L11">    private Map&lt;String, Cuenta&gt; cuentas = new HashMap&lt;&gt;();</span>
+
+    public void crearCuenta(String numero, double saldoInicial){
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        if (cuentas.containsKey(numero)){</span>
+<span class="fc" id="L15">            throw new IllegalArgumentException(&quot;LA CUENTA YA EXISTE&quot;);</span>
+        }
+<span class="fc" id="L17">        cuentas.put(numero, new Cuenta(numero, saldoInicial));</span>
+
+<span class="fc" id="L19">    }</span>
+    public double consultarSaldo (String numero){
+<span class="fc" id="L21">        Cuenta c = cuentas.get(numero);</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (c == null) throw new CuentaNoEncontrada(&quot;CUENTA NO EXISTE&quot;);</span>
+<span class="fc" id="L23">        return c.getSaldo();</span>
+
+    }
+
+    public void depositar (String numero, double monto){
+<span class="fc" id="L28">        Cuenta c = cuentas.get(numero);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (c == null) throw new CuentaNoEncontrada(&quot;CUENTA NO EXISTE&quot;);</span>
+<span class="fc" id="L30">        c.depositar(monto);</span>
+<span class="fc" id="L31">    }</span>
+    public void retirar(String numero, double monto){
+<span class="fc" id="L33">        Cuenta c = cuentas.get(numero);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if( c == null) throw new CuentaNoEncontrada(&quot;CUENTA NO EXISTE&quot;);</span>
+
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if(c.getSaldo() &lt; monto)</span>
+<span class="fc" id="L37">            throw new SaldoInsuficiente(&quot;NO HAY SALDO SUFICIENTE&quot;);</span>
+
+<span class="fc" id="L39">        c.retirar(monto);</span>
+<span class="fc" id="L40">    }</span>
+
+    public void transferir(String origen, String destino,  double monto){
+<span class="fc" id="L43">        Cuenta c1 = cuentas.get(origen);</span>
+<span class="fc" id="L44">        Cuenta c2 = cuentas.get(destino);</span>
+
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if(c1 == null)</span>
+<span class="fc" id="L47">            throw new CuentaNoEncontrada(&quot;CUENTA ORIGEN NO EXISTE&quot;);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if(c2 == null)</span>
+<span class="fc" id="L49">            throw new CuentaNoEncontrada(&quot;CUENTA DESTINO NO EXISTE&quot;);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if(c1.getSaldo() &lt; monto)</span>
+<span class="fc" id="L51">            throw new SaldoInsuficiente(&quot;SALDO INSUFICIENTE&quot;);</span>
+
+<span class="fc" id="L53">        c1.retirar(monto);</span>
+<span class="fc" id="L54">        c2.depositar(monto);</span>
+<span class="fc" id="L55">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

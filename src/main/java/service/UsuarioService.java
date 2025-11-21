@@ -1,7 +1,8 @@
 package service;
 
 import Model.Usuario;
-import exceptions.*;
+import exceptions.TelefonoInvalido;
+
 import java.util.HashMap;
 import java.util.Map;
 

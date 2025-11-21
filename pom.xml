@@ -17,7 +17,7 @@
     </properties>
 
     <dependencies>
-        <!-- JUnit 5 -->
+        <!-- JUnit 5 (ÚNICA LIBRERÍA DE TEST) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -29,7 +29,7 @@
     <build>
         <plugins>
 
-            <!-- Plugin de pruebas -->
+            <!-- Plugin de pruebas para JUnit 5 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -39,12 +39,14 @@
                 </configuration>
             </plugin>
 
-            <!-- JaCoCo -->
+            <!-- JaCoCo para cobertura -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.11</version>
                 <executions>
+
+                    <!-- Inserta el agente -->
                     <execution>
                         <id>prepare-agent</id>
                         <goals>
@@ -52,6 +54,7 @@
                         </goals>
                     </execution>
 
+                    <!-- Genera el reporte -->
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
@@ -60,6 +63,7 @@
                         </goals>
                     </execution>
 
+                    <!-- Verifica el mínimo de cobertura -->
                     <execution>
                         <id>check</id>
                         <goals>
@@ -80,6 +84,7 @@
                             </rules>
                         </configuration>
                     </execution>
+
                 </executions>
             </plugin>
 
@@ -104,4 +109,5 @@
 
         </plugins>
     </build>
+
 </project>

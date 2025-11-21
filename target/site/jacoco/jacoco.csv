@@ -1,0 +1,10 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+gestion-cuentas-bancarias,service,Banco,0,132,0,16,0,30,0,14,0,6
+gestion-cuentas-bancarias,service,UsuarioService,0,39,0,4,0,8,0,4,0,2
+gestion-cuentas-bancarias,Model,Usuario,9,24,0,0,2,9,2,3,2,3
+gestion-cuentas-bancarias,Model,Cuenta,18,39,3,3,1,12,4,4,1,4
+gestion-cuentas-bancarias,exceptions,SaldoInsuficiente,0,4,0,0,0,2,0,1,0,1
+gestion-cuentas-bancarias,exceptions,CuentaNoEncontrada,0,4,0,0,0,2,0,1,0,1
+gestion-cuentas-bancarias,exceptions,TelefonoInvalido,0,4,0,0,0,2,0,1,0,1
+gestion-cuentas-bancarias,exceptions,UsuarioNoEncontrado,4,0,0,0,2,0,1,0,1,0
+gestion-cuentas-bancarias,exceptions,UsuarioDuplicado,4,0,0,0,2,0,1,0,1,0
